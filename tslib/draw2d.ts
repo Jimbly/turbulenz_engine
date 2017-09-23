@@ -709,7 +709,7 @@ class Draw2D
     drawSprite                    : any;
 
     // Sprite data instance used for rectangle draw calls.
-    // drawSprite                 : Draw2DSpriteData;
+    drawSpriteData                : Draw2DSpriteData;
 
     // Solid fill texture for draw calls that do not specify a
     // texture.
@@ -1607,11 +1607,11 @@ class Draw2D
         group.numSets = 1;
         this.numGroups = 1;
 
-        var drawSprite = this.drawSprite;
+        var drawSpriteData = this.drawSpriteData;
         Draw2DSpriteData.setFromRotatedRectangle(
-            drawSprite, texture, destRect, srcRect, color, rotation,
+            drawSpriteData, texture, destRect, srcRect, color, rotation,
             params.origin);
-        this._bufferSprite(group, drawSprite);
+        this._bufferSprite(group, drawSpriteData);
 
         // Draw render group immediately.
         this.dispatch();
@@ -1692,10 +1692,10 @@ class Draw2D
         var color = params.color;
         var rotation = params.rotation;
 
-        var drawSprite = this.drawSprite;
-        Draw2DSpriteData.setFromRotatedRectangle(drawSprite, texture, destRect, srcRect, color, rotation, params.origin);
+        var drawSpriteData = this.drawSpriteData;
+        Draw2DSpriteData.setFromRotatedRectangle(drawSpriteData, texture, destRect, srcRect, color, rotation, params.origin);
 
-        this._bufferSprite(group, drawSprite);
+        this._bufferSprite(group, drawSpriteData);
     }
 
     ////////////////////////////////////////////////////////////////////////////
@@ -1824,10 +1824,10 @@ class Draw2D
         var color = params.color;
         var rotation = params.rotation;
 
-        var drawSprite = this.drawSprite;
-        Draw2DSpriteData.setFromRotatedRectangle(drawSprite, texture, destRect, srcRect, color, rotation, params.origin);
+        var drawSpriteData = this.drawSpriteData;
+        Draw2DSpriteData.setFromRotatedRectangle(drawSpriteData, texture, destRect, srcRect, color, rotation, params.origin);
 
-        this._bufferSprite(group, drawSprite);
+        this._bufferSprite(group, drawSpriteData);
     }
 
     ////////////////////////////////////////////////////////////////////////////
@@ -2301,7 +2301,7 @@ class Draw2D
         o.texGroup = undefined;
 
         // Sprite data instance used for rectangle draw calls.
-        o.drawSprite = Draw2DSpriteData.create();
+        o.drawSpriteData = Draw2DSpriteData.create();
 
         // Solid fill texture for draw calls that do not specify a texture.
         o.defaultTexture = gd.createTexture({
